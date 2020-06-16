@@ -41,6 +41,8 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
     // Create the content intent for the notification, which launches
     // this activity
     // TODO: Step 1.11 create intent
+    val intent = Intent(applicationContext,MainActivity::class.java)
+    val pendingIntent = PendingIntent.getActivity(applicationContext,REQUEST_CODE,intent,PendingIntent.FLAG_UPDATE_CURRENT)
 
     // TODO: Step 1.12 create PendingIntent
 
@@ -54,6 +56,8 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
     builder.setSmallIcon(R.drawable.cooked_egg)
             .setContentTitle(applicationContext.getString(R.string.notification_title))
             .setContentText(messageBody)
+        .setContentIntent(pendingIntent)
+        .setAutoCancel(true)
 
     // TODO: Step 1.8 use the new 'breakfast' notification channel
 
@@ -72,3 +76,7 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
 }
 
 // TODO: Step 1.14 Cancel all notifications
+
+fun NotificationManager.cancelNotifications(){
+    cancelAll()
+}

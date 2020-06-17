@@ -47,17 +47,27 @@ fun NotificationManager.sendNotification(messageBody: String, applicationContext
     // TODO: Step 1.12 create PendingIntent
 
     // TODO: Step 2.0 add style
+    val image = BitmapFactory.decodeResource(applicationContext.resources,R.drawable.cooked_egg)
+    val bigStyle = NotificationCompat.BigPictureStyle()
+        .bigPicture(image)
+        .bigLargeIcon(image)
 
     // TODO: Step 2.2 add snooze action
+    val snoozeIntent  = Intent(applicationContext,SnoozeReceiver::class.java)
+    val snoozePendingIntent = PendingIntent.getBroadcast(applicationContext, REQUEST_CODE,snoozeIntent,0)
+
 
     // TODO: Step 1.2 get an instance of NotificationCompat.Builder
     // Build the notification
     val builder = NotificationCompat.Builder(applicationContext,applicationContext.getString(R.string.breakfast_notification_channel_id))
     builder.setSmallIcon(R.drawable.cooked_egg)
-            .setContentTitle(applicationContext.getString(R.string.notification_title))
-            .setContentText(messageBody)
+        .setContentTitle(applicationContext.getString(R.string.notification_title))
+        .setContentText(messageBody)
         .setContentIntent(pendingIntent)
         .setAutoCancel(true)
+        .setStyle(bigStyle)
+        .addAction(R.drawable.egg_icon,applicationContext.getString(R.string.snooze),snoozePendingIntent).priority =
+        NotificationCompat.PRIORITY_HIGH
 
     // TODO: Step 1.8 use the new 'breakfast' notification channel
 

@@ -63,12 +63,13 @@ class EggTimerFragment : Fragment() {
             val channel = NotificationChannel(
                 channelId,
                 requireActivity().getString(R.string.breakfast_notification_channel_name),
-                NotificationManager.IMPORTANCE_LOW
+                NotificationManager.IMPORTANCE_HIGH
             )
             channel.enableLights(true)
             channel.enableVibration(true)
             channel.lightColor = Color.RED
             channel.description = "let me test"
+            channel.setShowBadge(true)
 
             val manager = ContextCompat.getSystemService(requireContext(),NotificationManager::class.java) as NotificationManager
             manager.createNotificationChannel(channel)

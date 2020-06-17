@@ -47,6 +47,10 @@ class SnoozeReceiver: BroadcastReceiver() {
             triggerTime,
             notifyPendingIntent
         )
+
+        val notiManager = ContextCompat.getSystemService(context, NotificationManager::class.java) as NotificationManager
+        notiManager.cancelAll()
+
     }
 
 }

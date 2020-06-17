@@ -33,4 +33,7 @@
     <string name="timer_running">Egg timer is running...</string>
     <string name="breakfast_notification_channel_description">Breakfast reminder</string>
     <string name="snooze">Snooze</string>
+
+    <string name="fcm_channel_id">fcm_channel_id</string>
+    <string name="fcm_channel_name">fcm_channel_name</string>
 </resources>

@@ -68,7 +68,7 @@ class EggTimerFragment : Fragment() {
             channel.enableLights(true)
             channel.enableVibration(true)
             channel.lightColor = Color.RED
-            channel.description = "let me test"
+            channel.description = "let me test fcm"
             channel.setShowBadge(true)
 
             val manager = ContextCompat.getSystemService(requireContext(),NotificationManager::class.java) as NotificationManager
@@ -76,6 +76,23 @@ class EggTimerFragment : Fragment() {
         }
 
         // TODO: Step 1.6 END create a channel
+
+        // create channel for FCM
+//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+//            val channel = NotificationChannel(
+//                requireActivity().getString(R.string.fcm_channel_id),
+//                requireActivity().getString(R.string.fcm_channel_name),
+//                NotificationManager.IMPORTANCE_HIGH
+//            )
+//            channel.enableLights(true)
+//            channel.enableVibration(true)
+//            channel.lightColor = Color.RED
+//            channel.description = "let me test fcm"
+//            channel.setShowBadge(true)
+//
+//            val manager = ContextCompat.getSystemService(requireContext(),NotificationManager::class.java) as NotificationManager
+//            manager.createNotificationChannel(channel)
+//        }
 
     }
 

@@ -32,6 +32,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.android.eggtimernotifications.R
 import com.example.android.eggtimernotifications.databinding.FragmentEggTimerBinding
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.FirebaseMessagingRegistrar
 
 class EggTimerFragment : Fragment() {
 
@@ -53,6 +54,7 @@ class EggTimerFragment : Fragment() {
 
         // TODO: Step 1.7 call create channel
         createChannel(getString(R.string.breakfast_notification_channel_id),getString(R.string.breakfast_notification_channel_name))
+        subscribeTopic()
 
         return binding.root
     }
@@ -77,23 +79,16 @@ class EggTimerFragment : Fragment() {
 
         // TODO: Step 1.6 END create a channel
 
-        // create channel for FCM
-//        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-//            val channel = NotificationChannel(
-//                requireActivity().getString(R.string.fcm_channel_id),
-//                requireActivity().getString(R.string.fcm_channel_name),
-//                NotificationManager.IMPORTANCE_HIGH
-//            )
-//            channel.enableLights(true)
-//            channel.enableVibration(true)
-//            channel.lightColor = Color.RED
-//            channel.description = "let me test fcm"
-//            channel.setShowBadge(true)
-//
-//            val manager = ContextCompat.getSystemService(requireContext(),NotificationManager::class.java) as NotificationManager
-//            manager.createNotificationChannel(channel)
-//        }
+    }
 
+    private fun subscribeTopic(){
+        FirebaseMessaging.getInstance().subscribeToTopic(TOPIC).addOnCompleteListener {
+            var msg = getString(R.string.message_subscribed)
+            if (!it.isSuccessful){
+                msg = getString(R.string.message_subscribe_failed)
+            }
+            Toast.makeText(context,msg,Toast.LENGTH_SHORT).show()
+        }
     }
 
     companion object {
